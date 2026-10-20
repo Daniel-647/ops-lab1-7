@@ -42,4 +42,16 @@ dist/enroll-conflict_1.0.0_linux_amd64/enroll-conflict -version
 | `Dockerfile` | 选做 O1 使用 |
 | `LAB1.md` | 小组的证据与分析记录，需要填写并提交 |
 
-仓库中没有 `.github/workflows/`：流水线由小组在实验中自行编写。
+`.github/workflows/ci.yml` 在向 main 发起 PR 或推送提交时执行 CI；`.github/workflows/release.yml` 在推送符合 `vX.Y.Z` 格式的版本标签时执行发布流程。
+
+## 查询正在运行的版本
+
+服务启动后，可以查询版本接口：
+
+```bash
+curl -fsS http://127.0.0.1:8080/version
+```
+
+如果启动时指定了其他地址或端口，请相应调整请求地址。
+
+该接口返回正在运行服务的版本号、提交号和构建号等信息。部署或回退后，应查询此接口，并结合对应的 Release 和 Actions 记录确认实际运行的版本。
