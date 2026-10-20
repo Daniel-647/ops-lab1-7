@@ -1,0 +1,14 @@
+remote: error: GH013: Repository rule violations found for refs/heads/main.
+remote: Review all repository rules at https://github.com/Daniel-647/ops-lab1-7/rules?ref=refs%2Fheads%2Fmain
+remote:
+remote: - Changes must be made through a pull request.
+remote:
+remote: - Required status check "ci" is expected.
+remote:
+To https://github.com/Daniel-647/ops-lab1-7.git
+ ! [remote rejected] HEAD -> main (push declined due to repository rule violations)
+error: failed to push some refs to 'https://github.com/Daniel-647/ops-lab1-7.git'
+push_exit_code=1
+main_before=8a7ecb744b441462437e3c02e63a09803bf04eb1
+main_after=8a7ecb744b441462437e3c02e63a09803bf04eb1
+gate_verification=PASS

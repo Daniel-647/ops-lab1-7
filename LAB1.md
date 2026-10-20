@@ -1,32 +1,78 @@
-# 实验 1 记录：第 <组号> 组
+# 实验 1 记录：第 7 组
 
-现场检查时将打开本文件，按其中的链接核对。证据一律以链接或文本形式给出，不要只贴截图。将 `<填写>` 替换为本组的内容。main 受保护之后，修改本文件也须通过 PR。
+现场检查时将打开本文件，按其中的链接核对。证据以链接和实际终端输出给出。当前已补齐任务 0、初始 CI、主干制品追溯和任务 3 的规则验证；任务 4 之后的实验及分析仍待完成。main 受保护之后，修改本文件也通过 PR。
 
 ## 1. 基本信息
 
 | 项 | 内容 |
 |---|---|
-| 小组 | 第 <组号> 组 |
-| 仓库地址 | <https://github.com/…> |
-| 代码载体 | 统一示例 / 自己的项目（<项目名与语言>） |
-| runner 与语言版本 | `ubuntu-24.04`，<Go 或其他语言的版本> |
-| 合并方式 | <squash / merge commit / rebase> |
+| 小组 | 第 7 组，共 4 人 |
+| 仓库地址 | <https://github.com/Daniel-647/ops-lab1-7> |
+| 代码载体 | 统一示例 `enroll-conflict`，Go |
+| runner 与语言版本 | `ubuntu-24.04`，Go `1.26.9`；组内 Linux 主机为 Ubuntu 24.04.4 LTS、x86-64，Go 同为 `1.26.9` |
+| 合并方式 | squash；仓库设置与规则集均只允许 Squash |
 
 ## 2. 任务 0：本地基线
 
 | 问题 | 观察结果 |
 |---|---|
-| 第一次 `make package` 得到的 BUILD_INFO（粘贴） | <填写> |
-| 修改一行、不提交，再次打包：BUILD_INFO 是否变化？二进制文件的 sha256 是否变化？（贴出两次的 sha256） | <填写> |
-| 两次 `go version -m` 输出中的 vcs 行有何不同？ | <填写> |
-| 仅凭 BUILD_INFO，能否回答该包是什么、在哪台机器上、何时、用哪份代码构建？哪一项信息会出错？ | <填写> |
+| 第一次 `make package` 得到的 BUILD_INFO（粘贴） | 见下方实际输出；两次的六行内容完全相同。 |
+| 修改一行、不提交，再次打包：BUILD_INFO 是否变化？二进制文件的 sha256 是否变化？（贴出两次的 sha256） | `BUILD_INFO` 没有变化，二进制 SHA-256 发生变化，两次完整值见下表。 |
+| 两次 `go version -m` 输出中的 vcs 行有何不同？ | `vcs`、`vcs.revision`、`vcs.time` 均相同，只有 `vcs.modified` 从 `false` 变为 `true`，实际输出见下方。 |
+| 仅凭 BUILD_INFO，能否回答该包是什么、在哪台机器上、何时、用哪份代码构建？哪一项信息会出错？ | 能读出程序名、声明的版本号和构建号、HEAD 提交号及 Go 版本；没有记录构建机器和构建时间。第二次包的 `commit` 仍是原 HEAD，单凭它会漏掉未提交的注释修改，不能完整还原当时的源码状态。 |
+
+### 实验条件和操作
+
+2026-10-20 09:19:25（UTC+08:00）开始，在组内 Linux 主机的独立模板克隆中操作，来源为 [课程模板](https://github.com/zilinglius/operations-2026-lab1-sample)，提交号为 `7b63b41c13f061439997b0e6e4eaa2af922a7aa1`。这里的模板提交与小组仓库的提交历史不同，后面的 CI 追溯使用小组仓库。
+
+两次均执行 `make package VERSION=1.0.0 BUILD_NO=1`，Go 版本为 `go1.26.9 linux/amd64`。第一次在干净工作区构建；第二次仅将 `conflict.go` 中的注释由“Weeks 表示一个教学班在哪些周上课。”改为“Weeks 表示教学班的上课周次（每周、单周或双周）。”，不提交，然后用相同参数构建。完成后已恢复注释，`git status --porcelain` 无输出。
+
+两次 `BUILD_INFO` 的实际内容：
+
+```text
+name=enroll-conflict
+version=1.0.0
+build_no=1
+run_id=local
+commit=7b63b41c13f061439997b0e6e4eaa2af922a7aa1
+go=go1.26.9
+```
+
+| 构建 | 二进制 SHA-256 |
+|---|---|
+| 第一次，工作区干净 | `f23447d406c42af7dd35e23c2d1b2f15484cfb709cc9b4bb1262643694b8528e` |
+| 第二次，注释已改但未提交 | `5049293df8a6eb201d310b3f6cef0d405c26b5ece7f07efa71bfd71204905c90` |
+
+第一次 `go version -m` 的 VCS 行：
+
+```text
+build vcs=git
+build vcs.revision=7b63b41c13f061439997b0e6e4eaa2af922a7aa1
+build vcs.time=2026-10-12T16:26:07Z
+build vcs.modified=false
+```
+
+第二次：
+
+```text
+build vcs=git
+build vcs.revision=7b63b41c13f061439997b0e6e4eaa2af922a7aa1
+build vcs.time=2026-10-12T16:26:07Z
+build vcs.modified=true
+```
+
+我们原本只改了注释，但二进制的哈希还是变了。结合 VCS 输出看，这次构建记录的工作区状态从干净变成了有修改，所以不能把哈希不同直接解释成功能改变。`BUILD_INFO` 没有记录这个状态，第二次仍显示同一个提交号；如果只按这个提交检出代码，就会漏掉构建时存在的未提交修改。另一个要区分的是，`vcs.time` 是提交时间，不是本次构建时间。这里的 `1.0.0` 和构建号 `1` 都是手工传入，尚不表示已经发布了 GitHub Release。
+
+完整终端输出见 [任务 0 原始记录](evidence/task0-baseline.txt)。
 
 ## 3. 证据
 
 | 项 | 链接或文本 |
 |---|---|
-| 规则集里启用的规则 | <列出规则名、审批人数和必需检查的名称> |
-| 组长直接 `git push origin main` 被拒的终端输出 | <粘贴文本> |
+| 规则集里启用的规则 | [main-gate](https://github.com/Daniel-647/ops-lab1-7/rules)：Active，目标为默认分支 main，Bypass list 为空；启用 Restrict deletions、Block force pushes、Require a pull request before merging（1 人审批，仅 Squash）、Require status checks to pass（`ci`，来源 GitHub Actions）。 |
+| 初始 main CI | [ci #1，attempt 1](https://github.com/Daniel-647/ops-lab1-7/actions/runs/39351112987)，push 事件，成功；这是设置门禁之前允许的初始 CI 提交。 |
+| 任务 2 主干制品追溯 | SHA-256 校验通过，`trace.sh` 退出码为 0；[实际输出](evidence/ci-1-trace.txt)，详情见本节下方。 |
+| 组长直接推送 main 被拒的终端输出 | 见下方实际输出及 [完整记录](evidence/main-gate-direct-push.txt)。 |
 | 第一轮：失败的 PR 运行 | <链接> |
 | 第一轮：修复后通过的 PR 运行 | <链接> |
 | 第一轮：合入 main 后的运行（含制品） | <链接> |
@@ -37,6 +83,46 @@
 | 未合入分支上的 tag 被 release gate 拒绝的运行 | <链接> |
 | Release v1.0.0 | <链接> |
 | Release v1.0.1 | <链接> |
+
+### 管理员直接推送验证
+
+验证时 GitHub 认证身份为组长 `Daniel-647`。在独立临时克隆中创建一个空提交，执行 `git push origin HEAD:refs/heads/main`，尝试直接更新 main。实际返回：
+
+```text
+remote: error: GH013: Repository rule violations found for refs/heads/main.
+remote: Review all repository rules at https://github.com/Daniel-647/ops-lab1-7/rules?ref=refs%2Fheads%2Fmain
+remote:
+remote: - Changes must be made through a pull request.
+remote:
+remote: - Required status check "ci" is expected.
+remote:
+To https://github.com/Daniel-647/ops-lab1-7.git
+ ! [remote rejected] HEAD -> main (push declined due to repository rule violations)
+error: failed to push some refs to 'https://github.com/Daniel-647/ops-lab1-7.git'
+```
+
+`git push` 退出码为 1，拒绝原因是仓库规则。验证前后远程 main 均为 `8a7ecb744b441462437e3c02e63a09803bf04eb1`，没有增加该空提交。这说明组长账号也受门禁约束。
+
+### 初始 CI 制品检查
+
+从初始 CI 的 Artifacts 下载 ZIP，解压后将其中的 `.tar.gz` 和 `.sha256` 上传到组内 Linux 主机。运行追溯前已拉取小组仓库最新 main；压缩包在 Mac 和云主机上算出的 SHA-256 均为：
+
+```text
+45cb31a4450f57b1f10ff44481c0c9199f55523f75a0d5ce917ec22d93ed71a1
+```
+
+`trace.sh` 读出的 `BUILD_INFO`：
+
+```text
+name=enroll-conflict
+version=0.0.0-main
+build_no=1
+run_id=39351112987
+commit=8a7ecb744b441462437e3c02e63a09803bf04eb1
+go=go1.26.9
+```
+
+脚本确认校验和正确，提交位于 `origin/main` 历史上，退出码为 0；输出中的 [提交链接](https://github.com/Daniel-647/ops-lab1-7/commit/8a7ecb744b441462437e3c02e63a09803bf04eb1) 和 [构建链接](https://github.com/Daniel-647/ops-lab1-7/actions/runs/39351112987) 与 GitHub 实际记录一致。这个提交是初始 CI 的直接提交，没有对应 PR；这是任务 2 的主干制品检查，任务 6 的两个 Release 仍需另行追溯。
 
 ## 4. 追溯与运行
 
@@ -100,7 +186,7 @@
 
 | 运行 | 事件（PR / push） | 时长 | 备注 |
 |---|---|---|---|
-| #<编号> | <填写> | <填写> | <填写> |
+| [ci #1 / attempt 1](https://github.com/Daniel-647/ops-lab1-7/actions/runs/39351112987) | push → main | 总耗时 46 秒；`ci` job 42 秒 | 初始 CI，通过；总时段为 2026-10-20 09:01:47～09:02:33（UTC+08:00），job 为 09:01:50～09:02:32。后续继续补充，至少 5 次。 |
 
 ## 6. 分析问题
 
@@ -147,4 +233,7 @@
 
 | GitHub 用户名 | 发起并合入的 PR 编号 | 审批过的 PR 编号 |
 |---|---|---|
-| <用户名> | <编号> | <编号> |
+| Daniel-647 | 待合入；计划负责任务 5 发布工作流 PR | 待填写 |
+| QuQ-art | 待填写 | 待填写 |
+| kanata-0527 | 待填写 | 待填写 |
+| wenzhu4203 | 待填写 | 待填写 |

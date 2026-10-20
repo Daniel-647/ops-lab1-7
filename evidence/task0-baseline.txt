@@ -1,0 +1,53 @@
+2026-10-20T09:19:25+08:00
+7b63b41c13f061439997b0e6e4eaa2af922a7aa1
+go version go1.26.9 linux/amd64
+FIRST BUILD
+mkdir -p dist/enroll-conflict_1.0.0_linux_amd64
+CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -trimpath -ldflags "-X main.version=1.0.0 -X main.commit=7b63b41c13f061439997b0e6e4eaa2af922a7aa1 -X main.buildNo=1" -o dist/enroll-conflict_1.0.0_linux_amd64/enroll-conflict .
+printf 'name=%s\nversion=%s\nbuild_no=%s\nrun_id=%s\ncommit=%s\ngo=%s\n' \
+	'enroll-conflict' '1.0.0' '1' 'local' '7b63b41c13f061439997b0e6e4eaa2af922a7aa1' "$(go env GOVERSION)" > dist/enroll-conflict_1.0.0_linux_amd64/BUILD_INFO
+tar --sort=name --owner=0 --group=0 --numeric-owner --mtime=@0 -C dist -cf - enroll-conflict_1.0.0_linux_amd64 | gzip -n > dist/enroll-conflict_1.0.0_linux_amd64.tar.gz
+cd dist && sha256sum enroll-conflict_1.0.0_linux_amd64.tar.gz > enroll-conflict_1.0.0_linux_amd64.tar.gz.sha256
+name=enroll-conflict
+version=1.0.0
+build_no=1
+run_id=local
+commit=7b63b41c13f061439997b0e6e4eaa2af922a7aa1
+go=go1.26.9
+f23447d406c42af7dd35e23c2d1b2f15484cfb709cc9b4bb1262643694b8528e  dist/enroll-conflict_1.0.0_linux_amd64/enroll-conflict
+	build	vcs=git
+	build	vcs.revision=7b63b41c13f061439997b0e6e4eaa2af922a7aa1
+	build	vcs.time=2026-10-12T16:26:07Z
+	build	vcs.modified=false
+diff --git a/conflict.go b/conflict.go
+index cbb333e..e58ac8f 100644
+--- a/conflict.go
++++ b/conflict.go
+@@ -1,6 +1,6 @@
+ package main
+ 
+-// Weeks 表示一个教学班在哪些周上课。
++// Weeks 表示教学班的上课周次（每周、单周或双周）。
+ type Weeks string
+ 
+ const (
+SECOND BUILD (uncommitted comment change)
+mkdir -p dist/enroll-conflict_1.0.0_linux_amd64
+CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -trimpath -ldflags "-X main.version=1.0.0 -X main.commit=7b63b41c13f061439997b0e6e4eaa2af922a7aa1 -X main.buildNo=1" -o dist/enroll-conflict_1.0.0_linux_amd64/enroll-conflict .
+printf 'name=%s\nversion=%s\nbuild_no=%s\nrun_id=%s\ncommit=%s\ngo=%s\n' \
+	'enroll-conflict' '1.0.0' '1' 'local' '7b63b41c13f061439997b0e6e4eaa2af922a7aa1' "$(go env GOVERSION)" > dist/enroll-conflict_1.0.0_linux_amd64/BUILD_INFO
+tar --sort=name --owner=0 --group=0 --numeric-owner --mtime=@0 -C dist -cf - enroll-conflict_1.0.0_linux_amd64 | gzip -n > dist/enroll-conflict_1.0.0_linux_amd64.tar.gz
+cd dist && sha256sum enroll-conflict_1.0.0_linux_amd64.tar.gz > enroll-conflict_1.0.0_linux_amd64.tar.gz.sha256
+name=enroll-conflict
+version=1.0.0
+build_no=1
+run_id=local
+commit=7b63b41c13f061439997b0e6e4eaa2af922a7aa1
+go=go1.26.9
+BUILD_INFO unchanged
+5049293df8a6eb201d310b3f6cef0d405c26b5ece7f07efa71bfd71204905c90  dist/enroll-conflict_1.0.0_linux_amd64/enroll-conflict
+	build	vcs=git
+	build	vcs.revision=7b63b41c13f061439997b0e6e4eaa2af922a7aa1
+	build	vcs.time=2026-10-12T16:26:07Z
+	build	vcs.modified=true
+FINAL WORKTREE STATUS
