@@ -1,0 +1,76 @@
+name: ci
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  ci:
+    runs-on: ubuntu-24.04
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v7
+
+      - name: Set up Go
+        uses: actions/setup-go@v7
+        with:
+          go-version: '1.26.9'
+          cache: true
+
+      - name: Print event and commit information
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          REF: ${{ github.ref }}
+          COMMIT: ${{ github.sha }}
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          printf 'event_name=%s\n' "$EVENT_NAME"
+          printf 'ref=%s\n' "$REF"
+          printf 'github.sha=%s\n' "$COMMIT"
+          printf 'pull_request.head.sha=%s\n' "$PR_HEAD_SHA"
+
+      - name: Check formatting
+        run: make fmt-check
+
+      - name: Run static analysis
+        run: make vet
+
+      - name: Run tests
+        run: make test
+
+      - name: Package main build
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        env:
+          BUILD_NO: ${{ github.run_number }}
+          RUN_ID: ${{ github.run_id }}
+          COMMIT: ${{ github.sha }}
+        run: |
+          make package \
+            VERSION=0.0.0-main \
+            BUILD_NO="$BUILD_NO" \
+            RUN_ID="$RUN_ID" \
+            COMMIT="$COMMIT"
+
+      - name: Print checksums
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          sha256sum \
+            dist/enroll-conflict_0.0.0-main_linux_amd64/enroll-conflict \
+            dist/*.tar.gz
+
+      - name: Upload main artifact
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: actions/upload-artifact@v7
+        with:
+          name: main-${{ github.sha }}-${{ github.run_number }}
+          path: |
+            dist/*.tar.gz
+            dist/*.tar.gz.sha256
+          retention-days: 14
+          if-no-files-found: error
