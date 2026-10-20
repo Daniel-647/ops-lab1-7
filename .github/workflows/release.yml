@@ -1,0 +1,91 @@
+name: release
+
+on:
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-24.04
+    env:
+      GOTOOLCHAIN: local
+
+    steps:
+      - name: Checkout tagged source
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      # 检查完整提交历史；未合入 main 的提交不能发布。
+      - name: Release gate
+        env:
+          COMMIT: ${{ github.sha }}
+        run: |
+          set -euo pipefail
+          git fetch --no-tags origin '+refs/heads/main:refs/remotes/origin/main'
+          if ! git merge-base --is-ancestor "$COMMIT" origin/main; then
+            echo '::error::Release rejected: tag commit is not in main history.'
+            exit 1
+          fi
+          printf 'Release gate passed: %s is in main history.\n' "$COMMIT"
+
+      - name: Set up Go
+        uses: actions/setup-go@v7
+        with:
+          go-version: '1.26.9'
+          cache: true
+
+      - name: Check formatting
+        run: make fmt-check
+
+      - name: Run static analysis
+        run: make vet
+
+      - name: Run tests
+        run: make test
+
+      # 版本号来自 tag；其余标识来自本次 Actions 运行。
+      - name: Package release
+        env:
+          TAG: ${{ github.ref_name }}
+          BUILD_NO: ${{ github.run_number }}
+          RUN_ID: ${{ github.run_id }}
+          COMMIT: ${{ github.sha }}
+        run: |
+          VERSION="${TAG#v}"
+          make package \
+            VERSION="$VERSION" \
+            BUILD_NO="$BUILD_NO" \
+            RUN_ID="$RUN_ID" \
+            COMMIT="$COMMIT"
+
+      - name: Print and verify checksums
+        env:
+          TAG: ${{ github.ref_name }}
+        run: |
+          VERSION="${TAG#v}"
+          sha256sum \
+            "dist/enroll-conflict_${VERSION}_linux_amd64/enroll-conflict" \
+            "dist/enroll-conflict_${VERSION}_linux_amd64.tar.gz"
+          cd dist
+          sha256sum -c "enroll-conflict_${VERSION}_linux_amd64.tar.gz.sha256"
+
+      # 只上传已打好的包；校验 tag 已存在，不覆盖已发布版本。
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          TAG: ${{ github.ref_name }}
+          COMMIT: ${{ github.sha }}
+        run: |
+          VERSION="${TAG#v}"
+          gh release create "$TAG" \
+            "dist/enroll-conflict_${VERSION}_linux_amd64.tar.gz" \
+            "dist/enroll-conflict_${VERSION}_linux_amd64.tar.gz.sha256" \
+            --verify-tag \
+            --title "$TAG" \
+            --notes "Source commit: $COMMIT"
