@@ -76,10 +76,10 @@ build vcs.modified=true
 | 第一轮：失败的 PR 运行 | [PR #2](https://github.com/Daniel-647/ops-lab1-7/pull/2)；[失败运行 ci #4](https://github.com/Daniel-647/ops-lab1-7/actions/runs/39359794537)，在 Run tests 步骤失败。  |
 | 第一轮：修复后通过的 PR 运行 |  [修复提交 cd0f736](https://github.com/Daniel-647/ops-lab1-7/commit/cd0f73673752585c27cab631d88ce8762a0c7f4d)；[通过运行 ci #5](https://github.com/Daniel-647/ops-lab1-7/actions/runs/39361867498)。 |
 | 第一轮：合入 main 后的运行（含制品） | [main 上的成功运行 ci #6](https://github.com/Daniel-647/ops-lab1-7/actions/runs/39362282086)。 |
-| 第二轮：找到的缺陷，以及现有测试为何无法发现它 | <一两句话> |
-| 第二轮：仅含缺陷时仍然通过的运行 | <链接> |
-| 第二轮：补测试后失败的运行 | <链接> |
-| 第二轮：撤销缺陷后通过的运行 | <链接> |
+| 第二轮：找到的缺陷，以及现有测试为何无法发现它 | 将 `conflict.go` 的时段合法性判断由 `end < start` 改为 `end <= start`，使合法的单节课（如 `start=3, end=3`）被判为非法，接口返回 HTTP 400。原有合法样例未覆盖 `start == end` 的情况，因此旧测试仍然通过。 |
+| 第二轮：仅含缺陷时仍然通过的运行 | [ci #7](https://github.com/Daniel-647/ops-lab1-7/actions/runs/39362790734) |
+| 第二轮：补测试后失败的运行 | [ci #8](https://github.com/Daniel-647/ops-lab1-7/actions/runs/39362976846) |
+| 第二轮：撤销缺陷后通过的运行 | [ci #9](https://github.com/Daniel-647/ops-lab1-7/actions/runs/39363082268) |
 | 未合入分支上的 tag 被 release gate 拒绝的运行 | <链接> |
 | Release v1.0.0 | [v1.0.0](https://github.com/Daniel-647/ops-lab1-7/releases/tag/v1.0.0) |
 | Release v1.0.1 | [v1.0.1](https://github.com/Daniel-647/ops-lab1-7/releases/tag/v1.0.1) |
@@ -227,11 +227,14 @@ CI 结束时间统一采用 GitHub 记录的 ci 任务完成时间。
 
 | 运行 | 事件（PR / push） | 时长 | 备注 |
 |---|---|---|---|
-| [ci #1 / attempt 1](https://github.com/Daniel-647/ops-lab1-7/actions/runs/39351112987) | push → main | 总耗时 46 秒；`ci` job 42 秒 | 初始 CI，通过；总时段为 2026-10-20 09:01:47～09:02:33（UTC+08:00），job 为 09:01:50～09:02:32。后续继续补充，至少 5 次。 |
+| [ci #1 / attempt 1](https://github.com/Daniel-647/ops-lab1-7/actions/runs/39351112987) | push → main | 总耗时 46 秒；`ci` job 42 秒 | 初始 CI，通过；总时段为 2026-10-20 09:01:47～09:02:33（UTC+08:00），job 为 09:01:50～09:02:32。|
 | [ci #4](https://github.com/Daniel-647/ops-lab1-7/actions/runs/39359794537) | PR #2 | ci 任务 12 秒 | 第一轮修复前，失败；ci 任务起止为 2026-10-20 10:36:04～10:36:16（UTC+08:00），失败步骤为 Run tests。 |
 | [ci #5](https://github.com/Daniel-647/ops-lab1-7/actions/runs/39361867498) | PR #2（推送修复后） | ci 任务 15 秒 | 第一轮修复后，通过；ci 任务起止为 2026-10-20 10:59:17～10:59:32（UTC+08:00）。 |
 | [ci #6](https://github.com/Daniel-647/ops-lab1-7/actions/runs/39362282086) | push → main | ci 任务 14 秒 | PR #2 合入 main 后，通过；ci 任务起止为 2026-10-20 11:03:45～11:03:59（UTC+08:00）。 |
-
+| [ci #7](https://github.com/Daniel-647/ops-lab1-7/actions/runs/39362790734) | PR #3 | ci 任务 10 秒 | 第二轮仅含缺陷，旧测试漏检，通过；ci 任务起止为 2026-10-20 11:09:23～11:09:33（UTC+08:00）。 |
+| [ci #8](https://github.com/Daniel-647/ops-lab1-7/actions/runs/39362976846) | PR #3（补充测试后） | ci 任务 9 秒 | 第二轮补充测试后，失败；ci 任务起止为 2026-10-20 11:11:28～11:11:37（UTC+08:00），失败步骤为 Run tests。 |
+| [ci #9](https://github.com/Daniel-647/ops-lab1-7/actions/runs/39363082268) | PR #3（撤销缺陷后） | ci 任务 13 秒 | 第二轮撤销缺陷后，通过；ci 任务起止为 2026-10-20 11:12:41～11:12:54（UTC+08:00）。 |
+| [ci #12](https://github.com/Daniel-647/ops-lab1-7/actions/runs/39366725871) | push → main | ci 任务 17 秒 | PR #3 合入 main 后，通过；ci 任务起止为 2026-10-20 11:54:21～11:54:38（UTC+08:00）。 |
 
 ## 6. 分析问题
 
@@ -280,5 +283,5 @@ CI 结束时间统一采用 GitHub 记录的 ci 任务完成时间。
 |---|---|---|
 | Daniel-647 | 待合入；计划负责任务 5 发布工作流 PR | 待填写 |
 | QuQ-art | [#2](https://github.com/Daniel-647/ops-lab1-7/pull/2) | 待填写 |
-| kanata-0527 | 待填写 | 待填写 |
+| kanata-0527 | [#3](https://github.com/Daniel-647/ops-lab1-7/pull/3) | [#1](https://github.com/Daniel-647/ops-lab1-7/pull/1)、[#2](https://github.com/Daniel-647/ops-lab1-7/pull/2) |
 | wenzhu4203 | [#5](https://github.com/Daniel-647/ops-lab1-7/pull/5) | 待填写 |
