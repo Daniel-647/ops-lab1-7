@@ -73,9 +73,9 @@ build vcs.modified=true
 | 初始 main CI | [ci #1，attempt 1](https://github.com/Daniel-647/ops-lab1-7/actions/runs/39351112987)，push 事件，成功；这是设置门禁之前允许的初始 CI 提交。 |
 | 任务 2 主干制品追溯 | SHA-256 校验通过，`trace.sh` 退出码为 0；[实际输出](evidence/ci-1-trace.txt)，详情见本节下方。 |
 | 组长直接推送 main 被拒的终端输出 | 见下方实际输出及 [完整记录](evidence/main-gate-direct-push.txt)。 |
-| 第一轮：失败的 PR 运行 | <链接> |
-| 第一轮：修复后通过的 PR 运行 | <链接> |
-| 第一轮：合入 main 后的运行（含制品） | <链接> |
+| 第一轮：失败的 PR 运行 | [PR #2](https://github.com/Daniel-647/ops-lab1-7/pull/2)；[失败运行 ci #4](https://github.com/Daniel-647/ops-lab1-7/actions/runs/39359794537)，在 Run tests 步骤失败。  |
+| 第一轮：修复后通过的 PR 运行 |  [修复提交 cd0f736](https://github.com/Daniel-647/ops-lab1-7/commit/cd0f73673752585c27cab631d88ce8762a0c7f4d)；[通过运行 ci #5](https://github.com/Daniel-647/ops-lab1-7/actions/runs/39361867498)。 |
+| 第一轮：合入 main 后的运行（含制品） | [main 上的成功运行 ci #6](https://github.com/Daniel-647/ops-lab1-7/actions/runs/39362282086)。 |
 | 第二轮：找到的缺陷，以及现有测试为何无法发现它 | <一两句话> |
 | 第二轮：仅含缺陷时仍然通过的运行 | <链接> |
 | 第二轮：补测试后失败的运行 | <链接> |
@@ -202,15 +202,18 @@ v1.0.1 trace退出码=0
 
 时间均从 GitHub 页面读取，并注明时区。
 
+所有时间均为 2026-10-20，时区为 UTC+08:00（北京时间）。
+CI 结束时间统一采用 GitHub 记录的 ci 任务完成时间。
+
 第一轮 gate 演练的时间线：
 
 | 事件 | 时间 | 链接 |
 |---|---|---|
-| 发起 PR | <填写> | <PR 链接> |
-| 第一次 `ci` 失败（运行结束） | <填写> | <链接> |
-| 推送修复提交 | <填写> | <链接> |
-| `ci` 通过（运行结束） | <填写> | <链接> |
-| 合入 main | <填写> | <链接> |
+| 发起 PR | 2026-10-20 10:35:57 | [PR #2](https://github.com/Daniel-647/ops-lab1-7/pull/2) |
+| 第一次 ci 失败（运行结束） | 2026-10-20 10:36:16 | [ci #4](https://github.com/Daniel-647/ops-lab1-7/actions/runs/39359794537) |
+| 推送修复提交 | 2026-10-20 10:59:10 | [修复提交 cd0f736](https://github.com/Daniel-647/ops-lab1-7/commit/cd0f73673752585c27cab631d88ce8762a0c7f4d) |
+| ci 通过（运行结束） | 2026-10-20 10:59:32 | [ci #5](https://github.com/Daniel-647/ops-lab1-7/actions/runs/39361867498) |
+| 合入 main | 2026-10-20 11:03:41 | [PR #2](https://github.com/Daniel-647/ops-lab1-7/pull/2) |
 
 提交到发布的间隔，至少记录三个合入的 PR：
 
@@ -225,6 +228,10 @@ v1.0.1 trace退出码=0
 | 运行 | 事件（PR / push） | 时长 | 备注 |
 |---|---|---|---|
 | [ci #1 / attempt 1](https://github.com/Daniel-647/ops-lab1-7/actions/runs/39351112987) | push → main | 总耗时 46 秒；`ci` job 42 秒 | 初始 CI，通过；总时段为 2026-10-20 09:01:47～09:02:33（UTC+08:00），job 为 09:01:50～09:02:32。后续继续补充，至少 5 次。 |
+| [ci #4](https://github.com/Daniel-647/ops-lab1-7/actions/runs/39359794537) | PR #2 | ci 任务 12 秒 | 第一轮修复前，失败；ci 任务起止为 2026-10-20 10:36:04～10:36:16（UTC+08:00），失败步骤为 Run tests。 |
+| [ci #5](https://github.com/Daniel-647/ops-lab1-7/actions/runs/39361867498) | PR #2（推送修复后） | ci 任务 15 秒 | 第一轮修复后，通过；ci 任务起止为 2026-10-20 10:59:17～10:59:32（UTC+08:00）。 |
+| [ci #6](https://github.com/Daniel-647/ops-lab1-7/actions/runs/39362282086) | push → main | ci 任务 14 秒 | PR #2 合入 main 后，通过；ci 任务起止为 2026-10-20 11:03:45～11:03:59（UTC+08:00）。 |
+
 
 ## 6. 分析问题
 
@@ -272,6 +279,6 @@ v1.0.1 trace退出码=0
 | GitHub 用户名 | 发起并合入的 PR 编号 | 审批过的 PR 编号 |
 |---|---|---|
 | Daniel-647 | 待合入；计划负责任务 5 发布工作流 PR | 待填写 |
-| QuQ-art | 待填写 | 待填写 |
+| QuQ-art | [#2](https://github.com/Daniel-647/ops-lab1-7/pull/2) | 待填写 |
 | kanata-0527 | 待填写 | 待填写 |
 | wenzhu4203 | [#5](https://github.com/Daniel-647/ops-lab1-7/pull/5) | 待填写 |
