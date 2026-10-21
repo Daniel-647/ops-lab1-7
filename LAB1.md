@@ -81,8 +81,8 @@ build vcs.modified=true
 | 第二轮：补测试后失败的运行 | <链接> |
 | 第二轮：撤销缺陷后通过的运行 | <链接> |
 | 未合入分支上的 tag 被 release gate 拒绝的运行 | <链接> |
-| Release v1.0.0 | <链接> |
-| Release v1.0.1 | <链接> |
+| Release v1.0.0 | [v1.0.0](https://github.com/Daniel-647/ops-lab1-7/releases/tag/v1.0.0) |
+| Release v1.0.1 | [v1.0.1](https://github.com/Daniel-647/ops-lab1-7/releases/tag/v1.0.1) |
 
 ### 管理员直接推送验证
 
@@ -130,34 +130,72 @@ go=go1.26.9
 
 | 项 | v1.0.0 | v1.0.1 |
 |---|---|---|
-| 版本号 | <填写> | <填写> |
-| 构建号 | <填写> | <填写> |
-| 提交号（SHA） | <填写> | <填写> |
-| 引入该提交的 PR | <编号与链接> | <编号与链接> |
-| 构建它的 Actions 运行（`trace.sh` 给出的链接） | <链接> | <链接> |
-| 制品 sha256（发布当时，取自 Release 里的 .sha256） | <填写> | <填写> |
+| 版本号 | `1.0.0` | `1.0.1` |
+| 构建号 | `1` | `3` |
+| 提交号（SHA） | `f394c6b09e233af442c675eaa95f6702bb78e433` | `63f498dfa4ee4f844ba648d176078fd52d8083c7` |
+| 引入该提交的 PR | [#4](https://github.com/Daniel-647/ops-lab1-7/pull/4) | [#5](https://github.com/Daniel-647/ops-lab1-7/pull/5) |
+| 构建它的 Actions 运行（`trace.sh` 给出的链接） | [release #1](https://github.com/Daniel-647/ops-lab1-7/actions/runs/39375350868) | [release #3](https://github.com/Daniel-647/ops-lab1-7/actions/runs/39433897261) |
+| 制品 sha256（发布当时，取自 Release 里的 .sha256） | `40b6bbb4dc1b4875b84c7dfd3d2cec88fee137d4f64ac1999eb224bceb4048af` | `1bc77fb3b9095cb85d2ac5489a87c88b02953e241add2cb6318ff1032d10b827` |
 
-仅凭构建号能否唯一确定是哪次运行？v1.0.0 的构建号在 `ci` 和 `release` 的运行列表中各对应哪次运行？<填写>
+仅凭构建号能否唯一确定是哪次运行？v1.0.0 的构建号在 `ci` 和 `release` 的运行列表中各对应哪次运行？不能。构建号在每个工作流中独立计数，v1.0.0 的构建号为 `1`，在 `ci` 中对应 [ci #1](https://github.com/Daniel-647/ops-lab1-7/actions/runs/39351112987)，在 `release` 中对应 [release #1](https://github.com/Daniel-647/ops-lab1-7/actions/runs/39375350868)。两次运行不同，需要用 `run_id` 定位构建该制品的具体运行。
 
-发布 v1.0.1 之后重新下载 v1.0.0 的附件，计算得到的 sha256：<填写>。与上表中发布当时的值是否一致？<填写>
+发布 v1.0.1 之后重新下载 v1.0.0 的附件，计算得到的 sha256：`40b6bbb4dc1b4875b84c7dfd3d2cec88fee137d4f64ac1999eb224bceb4048af`。与上表中发布当时的值是否一致？一致。
 
 `trace.sh` 输出（v1.0.0）：
 
 ```text
-<粘贴>
+== 1. 校验和
+enroll-conflict_1.0.0_linux_amd64.tar.gz: OK
+== 2. 制品里的 BUILD_INFO
+name=enroll-conflict
+version=1.0.0
+build_no=1
+run_id=39375350868
+commit=f394c6b09e233af442c675eaa95f6702bb78e433
+go=go1.26.9
+== 3. 提交 f394c6b09e233af442c675eaa95f6702bb78e433
+作者: Daniel-647 <li-yixi@sjtu.edu.cn>
+时间: 2026-10-20T13:29:14+08:00
+标题: ci: add gated release workflow (#4)
+主干: 该提交在 origin/main 的历史上
+指向它的 tag: v1.0.0
+版本号: 1.0.0    构建号: 1
+提交页面（含关联的 PR）: https://github.com/Daniel-647/ops-lab1-7/commit/f394c6b09e233af442c675eaa95f6702bb78e433
+构建它的运行: https://github.com/Daniel-647/ops-lab1-7/actions/runs/39375350868
+v1.0.0 trace退出码=0
 ```
 
 `trace.sh` 输出（v1.0.1）：
 
 ```text
-<粘贴>
+== 1. 校验和
+enroll-conflict_1.0.1_linux_amd64.tar.gz: OK
+== 2. 制品里的 BUILD_INFO
+name=enroll-conflict
+version=1.0.1
+build_no=3
+run_id=39433897261
+commit=63f498dfa4ee4f844ba648d176078fd52d8083c7
+go=go1.26.9
+== 3. 提交 63f498dfa4ee4f844ba648d176078fd52d8083c7
+作者: wenzhu4203 <wenzhu4203@gmail.com>
+时间: 2026-10-20T21:47:03+08:00
+标题: docs: add running version query instructions (#5)
+主干: 该提交在 origin/main 的历史上
+指向它的 tag: v1.0.1
+版本号: 1.0.1    构建号: 3
+提交页面（含关联的 PR）: https://github.com/Daniel-647/ops-lab1-7/commit/63f498dfa4ee4f844ba648d176078fd52d8083c7
+构建它的运行: https://github.com/Daniel-647/ops-lab1-7/actions/runs/39433897261
+v1.0.1 trace退出码=0
 ```
 
 任务 6 第 4 步，两次 `/version` 的输出：
 
 ```text
-<运行 v1.0.1 时>
-<换回 v1.0.0 后>
+运行 v1.0.1 时：
+{"version":"1.0.1","commit":"63f498dfa4ee4f844ba648d176078fd52d8083c7","build_no":"3","go":"go1.26.9"}
+换回 v1.0.0 后：
+{"version":"1.0.0","commit":"f394c6b09e233af442c675eaa95f6702bb78e433","build_no":"1","go":"go1.26.9"}
 ```
 
 ## 5. 数据
@@ -236,4 +274,4 @@ go=go1.26.9
 | Daniel-647 | 待合入；计划负责任务 5 发布工作流 PR | 待填写 |
 | QuQ-art | 待填写 | 待填写 |
 | kanata-0527 | 待填写 | 待填写 |
-| wenzhu4203 | 待填写 | 待填写 |
+| wenzhu4203 | [#5](https://github.com/Daniel-647/ops-lab1-7/pull/5) | 待填写 |
