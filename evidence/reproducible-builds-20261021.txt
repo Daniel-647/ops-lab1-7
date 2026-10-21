@@ -1,0 +1,188 @@
+2026-10-21T19:36:09+08:00
+63f498dfa4ee4f844ba648d176078fd52d8083c7
+go version go1.26.9 linux/amd64
+
+CASE=1 BUILD_NO=1
+mkdir -p dist/enroll-conflict_repro_linux_amd64
+CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -trimpath -ldflags "-X main.version=repro -X main.commit=63f498dfa4ee4f844ba648d176078fd52d8083c7 -X main.buildNo=1" -o dist/enroll-conflict_repro_linux_amd64/enroll-conflict .
+printf 'name=%s\nversion=%s\nbuild_no=%s\nrun_id=%s\ncommit=%s\ngo=%s\n' \
+	'enroll-conflict' 'repro' '1' 'repro' '63f498dfa4ee4f844ba648d176078fd52d8083c7' "$(go env GOVERSION)" > dist/enroll-conflict_repro_linux_amd64/BUILD_INFO
+tar --sort=name --owner=0 --group=0 --numeric-owner --mtime=@0 -C dist -cf - enroll-conflict_repro_linux_amd64 | gzip -n > dist/enroll-conflict_repro_linux_amd64.tar.gz
+cd dist && sha256sum enroll-conflict_repro_linux_amd64.tar.gz > enroll-conflict_repro_linux_amd64.tar.gz.sha256
+e1e5a82da6459da0107574de6de18af541ba8ff34778d94782325eb8e5251f81  dist/enroll-conflict_repro_linux_amd64/enroll-conflict
+a0ee06d98079a445da548b930d4ddc9e7aaab24bf6ac3d593bcec8f14db22a67  dist/enroll-conflict_repro_linux_amd64.tar.gz
+dist/enroll-conflict_repro_linux_amd64/enroll-conflict: go1.26.9
+	path	enroll-conflict
+	mod	enroll-conflict	v1.0.1	
+	build	-buildmode=exe
+	build	-compiler=gc
+	build	-trimpath=true
+	build	CGO_ENABLED=0
+	build	GOARCH=amd64
+	build	GOOS=linux
+	build	GOAMD64=v1
+	build	vcs=git
+	build	vcs.revision=63f498dfa4ee4f844ba648d176078fd52d8083c7
+	build	vcs.time=2026-10-20T13:47:03Z
+	build	vcs.modified=false
+name=enroll-conflict
+version=repro
+build_no=1
+run_id=repro
+commit=63f498dfa4ee4f844ba648d176078fd52d8083c7
+go=go1.26.9
+drwxr-xr-x 0/0               0 1970-01-01 08:00 enroll-conflict_repro_linux_amd64/
+-rw-r--r-- 0/0             119 1970-01-01 08:00 enroll-conflict_repro_linux_amd64/BUILD_INFO
+-rwxr-xr-x 0/0         8813809 1970-01-01 08:00 enroll-conflict_repro_linux_amd64/enroll-conflict
+
+CASE=2 BUILD_NO=1
+mkdir -p dist/enroll-conflict_repro_linux_amd64
+CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -trimpath -ldflags "-X main.version=repro -X main.commit=63f498dfa4ee4f844ba648d176078fd52d8083c7 -X main.buildNo=1" -o dist/enroll-conflict_repro_linux_amd64/enroll-conflict .
+printf 'name=%s\nversion=%s\nbuild_no=%s\nrun_id=%s\ncommit=%s\ngo=%s\n' \
+	'enroll-conflict' 'repro' '1' 'repro' '63f498dfa4ee4f844ba648d176078fd52d8083c7' "$(go env GOVERSION)" > dist/enroll-conflict_repro_linux_amd64/BUILD_INFO
+tar --sort=name --owner=0 --group=0 --numeric-owner --mtime=@0 -C dist -cf - enroll-conflict_repro_linux_amd64 | gzip -n > dist/enroll-conflict_repro_linux_amd64.tar.gz
+cd dist && sha256sum enroll-conflict_repro_linux_amd64.tar.gz > enroll-conflict_repro_linux_amd64.tar.gz.sha256
+e1e5a82da6459da0107574de6de18af541ba8ff34778d94782325eb8e5251f81  dist/enroll-conflict_repro_linux_amd64/enroll-conflict
+a0ee06d98079a445da548b930d4ddc9e7aaab24bf6ac3d593bcec8f14db22a67  dist/enroll-conflict_repro_linux_amd64.tar.gz
+dist/enroll-conflict_repro_linux_amd64/enroll-conflict: go1.26.9
+	path	enroll-conflict
+	mod	enroll-conflict	v1.0.1	
+	build	-buildmode=exe
+	build	-compiler=gc
+	build	-trimpath=true
+	build	CGO_ENABLED=0
+	build	GOARCH=amd64
+	build	GOOS=linux
+	build	GOAMD64=v1
+	build	vcs=git
+	build	vcs.revision=63f498dfa4ee4f844ba648d176078fd52d8083c7
+	build	vcs.time=2026-10-20T13:47:03Z
+	build	vcs.modified=false
+name=enroll-conflict
+version=repro
+build_no=1
+run_id=repro
+commit=63f498dfa4ee4f844ba648d176078fd52d8083c7
+go=go1.26.9
+drwxr-xr-x 0/0               0 1970-01-01 08:00 enroll-conflict_repro_linux_amd64/
+-rw-r--r-- 0/0             119 1970-01-01 08:00 enroll-conflict_repro_linux_amd64/BUILD_INFO
+-rwxr-xr-x 0/0         8813809 1970-01-01 08:00 enroll-conflict_repro_linux_amd64/enroll-conflict
+
+CASE=3 BUILD_NO=2
+mkdir -p dist/enroll-conflict_repro_linux_amd64
+CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -trimpath -ldflags "-X main.version=repro -X main.commit=63f498dfa4ee4f844ba648d176078fd52d8083c7 -X main.buildNo=2" -o dist/enroll-conflict_repro_linux_amd64/enroll-conflict .
+printf 'name=%s\nversion=%s\nbuild_no=%s\nrun_id=%s\ncommit=%s\ngo=%s\n' \
+	'enroll-conflict' 'repro' '2' 'repro' '63f498dfa4ee4f844ba648d176078fd52d8083c7' "$(go env GOVERSION)" > dist/enroll-conflict_repro_linux_amd64/BUILD_INFO
+tar --sort=name --owner=0 --group=0 --numeric-owner --mtime=@0 -C dist -cf - enroll-conflict_repro_linux_amd64 | gzip -n > dist/enroll-conflict_repro_linux_amd64.tar.gz
+cd dist && sha256sum enroll-conflict_repro_linux_amd64.tar.gz > enroll-conflict_repro_linux_amd64.tar.gz.sha256
+e36a14065a781ba99c42de1ec5b7a1bc9d7b314f11900f5b2cf7519b9f1e09d4  dist/enroll-conflict_repro_linux_amd64/enroll-conflict
+586647f62d8673d2accaa8c7947f5ec97c6fff29acc6ee07fec1e610495d7fe2  dist/enroll-conflict_repro_linux_amd64.tar.gz
+dist/enroll-conflict_repro_linux_amd64/enroll-conflict: go1.26.9
+	path	enroll-conflict
+	mod	enroll-conflict	v1.0.1	
+	build	-buildmode=exe
+	build	-compiler=gc
+	build	-trimpath=true
+	build	CGO_ENABLED=0
+	build	GOARCH=amd64
+	build	GOOS=linux
+	build	GOAMD64=v1
+	build	vcs=git
+	build	vcs.revision=63f498dfa4ee4f844ba648d176078fd52d8083c7
+	build	vcs.time=2026-10-20T13:47:03Z
+	build	vcs.modified=false
+name=enroll-conflict
+version=repro
+build_no=2
+run_id=repro
+commit=63f498dfa4ee4f844ba648d176078fd52d8083c7
+go=go1.26.9
+drwxr-xr-x 0/0               0 1970-01-01 08:00 enroll-conflict_repro_linux_amd64/
+-rw-r--r-- 0/0             119 1970-01-01 08:00 enroll-conflict_repro_linux_amd64/BUILD_INFO
+-rwxr-xr-x 0/0         8813809 1970-01-01 08:00 enroll-conflict_repro_linux_amd64/enroll-conflict
+diff --git a/Makefile b/Makefile
+index e3f0c7a..ed63c05 100644
+--- a/Makefile
++++ b/Makefile
+@@ -45,7 +45,7 @@ build:
+ package: build
+ 	printf 'name=%s\nversion=%s\nbuild_no=%s\nrun_id=%s\ncommit=%s\ngo=%s\n' \
+ 		'$(NAME)' '$(VERSION)' '$(BUILD_NO)' '$(RUN_ID)' '$(COMMIT)' "$$(go env GOVERSION)" > $(DIST)/$(PKG)/BUILD_INFO
+-	tar --sort=name --owner=0 --group=0 --numeric-owner --mtime=@0 -C $(DIST) -cf - $(PKG) | gzip -n > $(DIST)/$(PKG).tar.gz
++	tar --sort=name --owner=0 --group=0 --numeric-owner -C $(DIST) -cf - $(PKG) | gzip -n > $(DIST)/$(PKG).tar.gz
+ 	cd $(DIST) && sha256sum $(PKG).tar.gz > $(PKG).tar.gz.sha256
+ 
+ clean:
+
+CASE=4 BUILD_NO=1
+2026-10-21T19:36:58+08:00
+ M Makefile
+mkdir -p dist/enroll-conflict_repro_linux_amd64
+CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -trimpath -ldflags "-X main.version=repro -X main.commit=63f498dfa4ee4f844ba648d176078fd52d8083c7 -X main.buildNo=1" -o dist/enroll-conflict_repro_linux_amd64/enroll-conflict .
+printf 'name=%s\nversion=%s\nbuild_no=%s\nrun_id=%s\ncommit=%s\ngo=%s\n' \
+	'enroll-conflict' 'repro' '1' 'repro' '63f498dfa4ee4f844ba648d176078fd52d8083c7' "$(go env GOVERSION)" > dist/enroll-conflict_repro_linux_amd64/BUILD_INFO
+tar --sort=name --owner=0 --group=0 --numeric-owner -C dist -cf - enroll-conflict_repro_linux_amd64 | gzip -n > dist/enroll-conflict_repro_linux_amd64.tar.gz
+cd dist && sha256sum enroll-conflict_repro_linux_amd64.tar.gz > enroll-conflict_repro_linux_amd64.tar.gz.sha256
+30fdd1624a55afbc0d43943a411d72a1e2681734912e47e1ea11f379c9e5207b  dist/enroll-conflict_repro_linux_amd64/enroll-conflict
+4be6432b809828571f32b63ad951055805d007b908b694d1451baa0bbc5d2fd2  dist/enroll-conflict_repro_linux_amd64.tar.gz
+dist/enroll-conflict_repro_linux_amd64/enroll-conflict: go1.26.9
+	path	enroll-conflict
+	mod	enroll-conflict	v1.0.1+dirty	
+	build	-buildmode=exe
+	build	-compiler=gc
+	build	-trimpath=true
+	build	CGO_ENABLED=0
+	build	GOARCH=amd64
+	build	GOOS=linux
+	build	GOAMD64=v1
+	build	vcs=git
+	build	vcs.revision=63f498dfa4ee4f844ba648d176078fd52d8083c7
+	build	vcs.time=2026-10-20T13:47:03Z
+	build	vcs.modified=true
+name=enroll-conflict
+version=repro
+build_no=1
+run_id=repro
+commit=63f498dfa4ee4f844ba648d176078fd52d8083c7
+go=go1.26.9
+drwxr-xr-x 0/0               0 2026-10-21 19:36 enroll-conflict_repro_linux_amd64/
+-rw-r--r-- 0/0             119 2026-10-21 19:36 enroll-conflict_repro_linux_amd64/BUILD_INFO
+-rwxr-xr-x 0/0         8813809 2026-10-21 19:36 enroll-conflict_repro_linux_amd64/enroll-conflict
+
+CASE=5 BUILD_NO=1
+2026-10-21T19:37:02+08:00
+ M Makefile
+mkdir -p dist/enroll-conflict_repro_linux_amd64
+CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -trimpath -ldflags "-X main.version=repro -X main.commit=63f498dfa4ee4f844ba648d176078fd52d8083c7 -X main.buildNo=1" -o dist/enroll-conflict_repro_linux_amd64/enroll-conflict .
+printf 'name=%s\nversion=%s\nbuild_no=%s\nrun_id=%s\ncommit=%s\ngo=%s\n' \
+	'enroll-conflict' 'repro' '1' 'repro' '63f498dfa4ee4f844ba648d176078fd52d8083c7' "$(go env GOVERSION)" > dist/enroll-conflict_repro_linux_amd64/BUILD_INFO
+tar --sort=name --owner=0 --group=0 --numeric-owner -C dist -cf - enroll-conflict_repro_linux_amd64 | gzip -n > dist/enroll-conflict_repro_linux_amd64.tar.gz
+cd dist && sha256sum enroll-conflict_repro_linux_amd64.tar.gz > enroll-conflict_repro_linux_amd64.tar.gz.sha256
+30fdd1624a55afbc0d43943a411d72a1e2681734912e47e1ea11f379c9e5207b  dist/enroll-conflict_repro_linux_amd64/enroll-conflict
+3668cc915b03d5dc8889a19dbdd806602bf11961e909572392ef29fecd85db42  dist/enroll-conflict_repro_linux_amd64.tar.gz
+dist/enroll-conflict_repro_linux_amd64/enroll-conflict: go1.26.9
+	path	enroll-conflict
+	mod	enroll-conflict	v1.0.1+dirty	
+	build	-buildmode=exe
+	build	-compiler=gc
+	build	-trimpath=true
+	build	CGO_ENABLED=0
+	build	GOARCH=amd64
+	build	GOOS=linux
+	build	GOAMD64=v1
+	build	vcs=git
+	build	vcs.revision=63f498dfa4ee4f844ba648d176078fd52d8083c7
+	build	vcs.time=2026-10-20T13:47:03Z
+	build	vcs.modified=true
+name=enroll-conflict
+version=repro
+build_no=1
+run_id=repro
+commit=63f498dfa4ee4f844ba648d176078fd52d8083c7
+go=go1.26.9
+drwxr-xr-x 0/0               0 2026-10-21 19:36 enroll-conflict_repro_linux_amd64/
+-rw-r--r-- 0/0             119 2026-10-21 19:37 enroll-conflict_repro_linux_amd64/BUILD_INFO
+-rwxr-xr-x 0/0         8813809 2026-10-21 19:37 enroll-conflict_repro_linux_amd64/enroll-conflict
+
+RESTORED_WORKTREE
+restored_diff_exit=0

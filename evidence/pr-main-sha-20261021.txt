@@ -1,0 +1,41 @@
+ci	UNKNOWN STEP	2026-10-20T02:59:22.7338917Z ##[group]Run printf 'event_name=%s\n' "$EVENT_NAME"
+ci	UNKNOWN STEP	2026-10-20T02:59:22.7339442Z ^[[36;1mprintf 'event_name=%s\n' "$EVENT_NAME"^[[0m
+ci	UNKNOWN STEP	2026-10-20T02:59:22.7764171Z event_name=pull_request
+ci	UNKNOWN STEP	2026-10-20T02:59:22.7764612Z ref=refs/pull/2/merge
+ci	UNKNOWN STEP	2026-10-20T02:59:22.7765011Z github.sha=248fa45ffa40c1667e6e9e03a6651dea5bb3cbeb
+ci	UNKNOWN STEP	2026-10-20T02:59:22.7765475Z pull_request.head.sha=cd0f73673752585c27cab631d88ce8762a0c7f4d
+ci	UNKNOWN STEP	2026-10-20T03:12:45.6908079Z ##[group]Run printf 'event_name=%s\n' "$EVENT_NAME"
+ci	UNKNOWN STEP	2026-10-20T03:12:45.6908602Z ^[[36;1mprintf 'event_name=%s\n' "$EVENT_NAME"^[[0m
+ci	UNKNOWN STEP	2026-10-20T03:12:45.7164138Z event_name=pull_request
+ci	UNKNOWN STEP	2026-10-20T03:12:45.7164782Z ref=refs/pull/3/merge
+ci	UNKNOWN STEP	2026-10-20T03:12:45.7165431Z github.sha=0b6d625d3be205e3b7ab7332c304f15f281ce7a4
+ci	UNKNOWN STEP	2026-10-20T03:12:45.7166433Z pull_request.head.sha=422dfa06fa3e5a67a6991a43a2dd4fb0edc0b3bd
+ci	UNKNOWN STEP	2026-10-20T03:03:49.6186648Z ##[group]Run printf 'event_name=%s\n' "$EVENT_NAME"
+ci	UNKNOWN STEP	2026-10-20T03:03:49.6187109Z ^[[36;1mprintf 'event_name=%s\n' "$EVENT_NAME"^[[0m
+ci	UNKNOWN STEP	2026-10-20T03:03:49.6600250Z event_name=push
+ci	UNKNOWN STEP	2026-10-20T03:03:49.6600712Z ref=refs/heads/main
+ci	UNKNOWN STEP	2026-10-20T03:03:49.6601240Z github.sha=392507cab237a19aa6f829ac918a59aaaf2ff3e0
+ci	UNKNOWN STEP	2026-10-20T03:54:28.1864385Z ##[group]Run printf 'event_name=%s\n' "$EVENT_NAME"
+ci	UNKNOWN STEP	2026-10-20T03:54:28.1864856Z ^[[36;1mprintf 'event_name=%s\n' "$EVENT_NAME"^[[0m
+ci	UNKNOWN STEP	2026-10-20T03:54:28.2215662Z event_name=push
+ci	UNKNOWN STEP	2026-10-20T03:54:28.2216352Z ref=refs/heads/main
+ci	UNKNOWN STEP	2026-10-20T03:54:28.2216735Z github.sha=3d94e8aa5601d5af5f3b68b2719b0263aab43408
+
+Git ancestry checks (0=yes, 1=no):
+e05eae7164fc82040063ed96bbc80a5e16387c6d
+commit=248fa45ffa40c1667e6e9e03a6651dea5bb3cbeb parents=77e3b81b88898c086151a15e49d634ec8271c61d cd0f73673752585c27cab631d88ce8762a0c7f4d subject=Merge cd0f73673752585c27cab631d88ce8762a0c7f4d into 77e3b81b88898c086151a15e49d634ec8271c61d
+ancestor_of_origin_main_exit=1
+commit=0b6d625d3be205e3b7ab7332c304f15f281ce7a4 parents=392507cab237a19aa6f829ac918a59aaaf2ff3e0 422dfa06fa3e5a67a6991a43a2dd4fb0edc0b3bd subject=Merge 422dfa06fa3e5a67a6991a43a2dd4fb0edc0b3bd into 392507cab237a19aa6f829ac918a59aaaf2ff3e0
+ancestor_of_origin_main_exit=1
+commit=cd0f73673752585c27cab631d88ce8762a0c7f4d parents=0415f3e239151b553ddd2cf5c911c6213d82cf9a subject=fix: restore odd-even week separation
+ancestor_of_origin_main_exit=1
+commit=422dfa06fa3e5a67a6991a43a2dd4fb0edc0b3bd parents=3e3250c0769c3a587a20abcd6e8c4e9f87878c8b subject=Revert "test: reproduce single-period validation regression"
+ancestor_of_origin_main_exit=1
+commit=392507cab237a19aa6f829ac918a59aaaf2ff3e0 parents=77e3b81b88898c086151a15e49d634ec8271c61d subject=test: add even-week conflict coverage (#2)
+ancestor_of_origin_main_exit=0
+commit=3d94e8aa5601d5af5f3b68b2719b0263aab43408 parents=392507cab237a19aa6f829ac918a59aaaf2ff3e0 subject=test: 新增合法单节课时段的回归测试 (#3)
+ancestor_of_origin_main_exit=0
+commit=392507cab237a19aa6f829ac918a59aaaf2ff3e0 ancestor_of_v1.0.0_commit_exit=0
+commit=3d94e8aa5601d5af5f3b68b2719b0263aab43408 ancestor_of_v1.0.0_commit_exit=0
+commit=f394c6b09e233af442c675eaa95f6702bb78e433 ancestor_of_v1.0.0_commit_exit=0
+PR5_ancestor_of_v1.0.1_commit_exit=0
