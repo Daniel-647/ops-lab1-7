@@ -280,9 +280,21 @@ CI 结束时间统一采用 GitHub 记录的 ci 任务完成时间。
 
 | 选做 | 完成情况与证据 |
 |---|---|
-| O1 容器镜像 | 未做 |
-| O2 缓存对反馈时间的影响 | 未做 |
+| O1 容器镜像 | [PR #11](https://github.com/Daniel-647/ops-lab1-7/pull/11)， [release #4](https://github.com/Daniel-647/ops-lab1-7/actions/runs/39781357140) 的 release、image 两个 job 均成功，对应 [Release v1.0.2](https://github.com/Daniel-647/ops-lab1-7/releases/tag/v1.0.2)。<br>**镜像地址：** `ghcr.io/daniel-647/ops-lab1-7:v1.0.2`。<br>**镜像 digest：** `sha256:bc487b743bf661a0154c0743e1d1a13563df6e8629101626ddaaf9bd4a58a6d5`。<br>**架构：** 运行容器的 Docker 主机为 `linux/x86_64`，镜像为 `linux/amd64`，两者架构一致。<br> |
+| O2 缓存对反馈时间的影响 | **预期：** 示例没有依赖，缓存能够节省的时间应该很有限，甚至接近0。<br> **数据：** <br> **有缓存，attempt 1～5：** [18 秒](https://github.com/Daniel-647/ops-lab1-7/actions/runs/39621375759/attempts/1)、[18 秒](https://github.com/Daniel-647/ops-lab1-7/actions/runs/39621375759/attempts/2)、[14 秒](https://github.com/Daniel-647/ops-lab1-7/actions/runs/39621375759/attempts/3)、[12 秒](https://github.com/Daniel-647/ops-lab1-7/actions/runs/39621375759/attempts/4)、[12 秒](https://github.com/Daniel-647/ops-lab1-7/actions/runs/39621375759/attempts/5)，平均 14.8 秒。<br>**无缓存，attempt 1～5：** [35 秒](https://github.com/Daniel-647/ops-lab1-7/actions/runs/39772842392/attempts/1)、[26 秒](https://github.com/Daniel-647/ops-lab1-7/actions/runs/39772842392/attempts/2)、[27 秒](https://github.com/Daniel-647/ops-lab1-7/actions/runs/39772842392/attempts/3)、[30 秒](https://github.com/Daniel-647/ops-lab1-7/actions/runs/39772842392/attempts/4)、[34 秒](https://github.com/Daniel-647/ops-lab1-7/actions/runs/39772842392/attempts/5)，平均 30.4 秒。<br>**结论：** 有缓存组平均减少 `30.4－14.8＝15.6` 秒，相对减少约 `15.6÷30.4×100%＝51.3%`。由此可知，即使没有第三方依赖，复用构建结果仍能缩短反馈时间。 |
 | O3 迁移到小组项目 | 未做 |
+
+### O1 容器镜像
+
+**实现：** 通过 [PR #11](https://github.com/Daniel-647/ops-lab1-7/pull/11)，在 release.yml 中增加 image job，并通过 needs: release 等待发布成功。该 job 下载对应版本的 Release 压缩包和校验文件，完成 SHA-256 校验后，使用仓库中的 Dockerfile 构建镜像。
+
+**匿名拉取：** 使用 mktemp -d 创建空的 Docker 配置目录，再通过 docker --config 指定该目录，按上述 digest 拉取镜像。两个镜像层均下载成功，返回的 Digest 与发布日志一致，说明该镜像可以匿名拉取。
+
+**为什么将镜像 job 放在同一个工作流中：** 本流程使用 GITHUB_TOKEN 创建 Release，该操作产生的 release 事件不会再触发另一个 GitHub Actions 工作流，以避免工作流递归触发。因此，将 image job 放在同一个 release.yml 中，通过 needs: release 等待附件发布完成，再下载附件构建镜像。
+
+### O2 缓存对反馈时间的影响
+
+**波动与局限：** 两组内部均存在时长波动，共享 runner 的负载、网络速度和缓存恢复开销都会影响结果。局限性在于，本次每组只有 5 次，次数较少，两组分时运行，且有缓存组首个样本来自前一天，时长差异不一定都来源于缓存。
 
 ## 8. 成员贡献
 
@@ -290,7 +302,7 @@ CI 结束时间统一采用 GitHub 记录的 ci 任务完成时间。
 
 | GitHub 用户名 | 发起并合入的 PR 编号 | 审批过的 PR 编号 |
 |---|---|---|
-| Daniel-647 | [#1](https://github.com/Daniel-647/ops-lab1-7/pull/1)、[#4](https://github.com/Daniel-647/ops-lab1-7/pull/4) | [#5](https://github.com/Daniel-647/ops-lab1-7/pull/5#pullrequestreview-5585886164)、[#6](https://github.com/Daniel-647/ops-lab1-7/pull/6#pullrequestreview-5597215159) |
-| QuQ-art | [#2](https://github.com/Daniel-647/ops-lab1-7/pull/2)、[#7](https://github.com/Daniel-647/ops-lab1-7/pull/7) | [#3](https://github.com/Daniel-647/ops-lab1-7/pull/3#pullrequestreview-5580572256)、[#4](https://github.com/Daniel-647/ops-lab1-7/pull/4#pullrequestreview-5581082529)、[#8](https://github.com/Daniel-647/ops-lab1-7/pull/8#pullrequestreview-5599977107) |
-| kanata-0527 | [#3](https://github.com/Daniel-647/ops-lab1-7/pull/3)、[#8](https://github.com/Daniel-647/ops-lab1-7/pull/8) | [#1](https://github.com/Daniel-647/ops-lab1-7/pull/1#pullrequestreview-5579769549)、[#2](https://github.com/Daniel-647/ops-lab1-7/pull/2#pullrequestreview-5580286961)、[#7](https://github.com/Daniel-647/ops-lab1-7/pull/7#pullrequestreview-5598123857) |
+| Daniel-647 | [#1](https://github.com/Daniel-647/ops-lab1-7/pull/1)、[#4](https://github.com/Daniel-647/ops-lab1-7/pull/4)、[#9](https://github.com/Daniel-647/ops-lab1-7/pull/9) | [#5](https://github.com/Daniel-647/ops-lab1-7/pull/5#pullrequestreview-5585886164)、[#6](https://github.com/Daniel-647/ops-lab1-7/pull/6#pullrequestreview-5597215159) |
+| QuQ-art | [#2](https://github.com/Daniel-647/ops-lab1-7/pull/2)、[#7](https://github.com/Daniel-647/ops-lab1-7/pull/7) | [#3](https://github.com/Daniel-647/ops-lab1-7/pull/3#pullrequestreview-5580572256)、[#4](https://github.com/Daniel-647/ops-lab1-7/pull/4#pullrequestreview-5581082529)、[#8](https://github.com/Daniel-647/ops-lab1-7/pull/8#pullrequestreview-5599977107)、[#11](https://github.com/Daniel-647/ops-lab1-7/pull/11)、[#12](https://github.com/Daniel-647/ops-lab1-7/pull/12) |
+| kanata-0527 | [#3](https://github.com/Daniel-647/ops-lab1-7/pull/3)、[#8](https://github.com/Daniel-647/ops-lab1-7/pull/8)、[#11](https://github.com/Daniel-647/ops-lab1-7/pull/11)、[#12](https://github.com/Daniel-647/ops-lab1-7/pull/12) | [#1](https://github.com/Daniel-647/ops-lab1-7/pull/1#pullrequestreview-5579769549)、[#2](https://github.com/Daniel-647/ops-lab1-7/pull/2#pullrequestreview-5580286961)、[#7](https://github.com/Daniel-647/ops-lab1-7/pull/7#pullrequestreview-5598123857) |
 | wenzhu4203 | [#5](https://github.com/Daniel-647/ops-lab1-7/pull/5)、[#6](https://github.com/Daniel-647/ops-lab1-7/pull/6) | [#9](https://github.com/Daniel-647/ops-lab1-7/pull/9) |
