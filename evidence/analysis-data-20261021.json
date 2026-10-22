@@ -1,0 +1,809 @@
+{
+  "prs": [
+    {
+      "commits": [
+        {
+          "authoredDate": "2026-10-20T02:31:32Z",
+          "authors": [
+            {
+              "email": "3502974187@qq.com",
+              "id": "U_kgDOC_d8qQ",
+              "login": "QuQ-art",
+              "name": "QuQ-art"
+            }
+          ],
+          "committedDate": "2026-10-20T02:31:32Z",
+          "messageBody": "",
+          "messageHeadline": "test: exercise gate with conflicting week logic",
+          "oid": "0415f3e239151b553ddd2cf5c911c6213d82cf9a"
+        },
+        {
+          "authoredDate": "2026-10-20T02:59:05Z",
+          "authors": [
+            {
+              "email": "3502974187@qq.com",
+              "id": "U_kgDOC_d8qQ",
+              "login": "QuQ-art",
+              "name": "QuQ-art"
+            }
+          ],
+          "committedDate": "2026-10-20T02:59:05Z",
+          "messageBody": "",
+          "messageHeadline": "fix: restore odd-even week separation",
+          "oid": "cd0f73673752585c27cab631d88ce8762a0c7f4d"
+        }
+      ],
+      "createdAt": "2026-10-20T02:35:57Z",
+      "mergeCommit": {
+        "oid": "392507cab237a19aa6f829ac918a59aaaf2ff3e0"
+      },
+      "mergedAt": "2026-10-20T03:03:41Z",
+      "number": 2,
+      "reviews": [
+        {
+          "id": "PRR_kwDOVQQD388AAAABTJoBrw",
+          "author": {
+            "login": "copilot-pull-request-reviewer"
+          },
+          "authorAssociation": "NONE",
+          "body": "Copilot was unable to review this pull request because the user who requested the review has reached their quota limit.",
+          "submittedAt": "2026-10-20T02:36:03Z",
+          "includesCreatedEdit": false,
+          "reactionGroups": [],
+          "state": "COMMENTED",
+          "commit": {
+            "oid": "0415f3e239151b553ddd2cf5c911c6213d82cf9a"
+          }
+        },
+        {
+          "id": "PRR_kwDOVQQD388AAAABTJxr8Q",
+          "author": {
+            "login": "kanata-0527"
+          },
+          "authorAssociation": "COLLABORATOR",
+          "body": "",
+          "submittedAt": "2026-10-20T03:03:23Z",
+          "includesCreatedEdit": false,
+          "reactionGroups": [],
+          "state": "APPROVED",
+          "commit": {
+            "oid": "cd0f73673752585c27cab631d88ce8762a0c7f4d"
+          }
+        }
+      ],
+      "url": "https://github.com/Daniel-647/ops-lab1-7/pull/2"
+    },
+    {
+      "commits": [
+        {
+          "authoredDate": "2026-10-20T02:16:42Z",
+          "authors": [
+            {
+              "email": "gxy20060527@sjtu.edu.cn",
+              "id": "U_kgDODclD_Q",
+              "login": "kanata-0527",
+              "name": "kanata-0527"
+            }
+          ],
+          "committedDate": "2026-10-20T03:08:18Z",
+          "messageBody": "",
+          "messageHeadline": "test: reproduce single-period validation regression",
+          "oid": "592373f01abd35ff07bc80884e9e0239c0c3acf7"
+        },
+        {
+          "authoredDate": "2026-10-20T02:16:43Z",
+          "authors": [
+            {
+              "email": "gxy20060527@sjtu.edu.cn",
+              "id": "U_kgDODclD_Q",
+              "login": "kanata-0527",
+              "name": "kanata-0527"
+            }
+          ],
+          "committedDate": "2026-10-20T03:08:19Z",
+          "messageBody": "",
+          "messageHeadline": "test: cover valid single-period conflict requests",
+          "oid": "3e3250c0769c3a587a20abcd6e8c4e9f87878c8b"
+        },
+        {
+          "authoredDate": "2026-10-20T02:16:43Z",
+          "authors": [
+            {
+              "email": "gxy20060527@sjtu.edu.cn",
+              "id": "U_kgDODclD_Q",
+              "login": "kanata-0527",
+              "name": "kanata-0527"
+            }
+          ],
+          "committedDate": "2026-10-20T03:08:20Z",
+          "messageBody": "This reverts commit 8b7387a95184dd6fd6177b27a152cdf615c1b4a3.",
+          "messageHeadline": "Revert \"test: reproduce single-period validation regression\"",
+          "oid": "422dfa06fa3e5a67a6991a43a2dd4fb0edc0b3bd"
+        }
+      ],
+      "createdAt": "2026-10-20T03:09:18Z",
+      "mergeCommit": {
+        "oid": "3d94e8aa5601d5af5f3b68b2719b0263aab43408"
+      },
+      "mergedAt": "2026-10-20T03:54:16Z",
+      "number": 3,
+      "reviews": [
+        {
+          "id": "PRR_kwDOVQQD388AAAABTJzxkg",
+          "author": {
+            "login": "copilot-pull-request-reviewer"
+          },
+          "authorAssociation": "NONE",
+          "body": "Copilot was unable to review this pull request because the user who requested the review has reached their quota limit.",
+          "submittedAt": "2026-10-20T03:09:24Z",
+          "includesCreatedEdit": false,
+          "reactionGroups": [],
+          "state": "COMMENTED",
+          "commit": {
+            "oid": "592373f01abd35ff07bc80884e9e0239c0c3acf7"
+          }
+        },
+        {
+          "id": "PRR_kwDOVQQD388AAAABTKDGYA",
+          "author": {
+            "login": "QuQ-art"
+          },
+          "authorAssociation": "COLLABORATOR",
+          "body": "",
+          "submittedAt": "2026-10-20T03:53:26Z",
+          "includesCreatedEdit": false,
+          "reactionGroups": [],
+          "state": "APPROVED",
+          "commit": {
+            "oid": "422dfa06fa3e5a67a6991a43a2dd4fb0edc0b3bd"
+          }
+        }
+      ],
+      "url": "https://github.com/Daniel-647/ops-lab1-7/pull/3"
+    },
+    {
+      "commits": [
+        {
+          "authoredDate": "2026-10-20T05:20:14Z",
+          "authors": [
+            {
+              "email": "li-yixi@sjtu.edu.cn",
+              "id": "U_kgDOCrP_Ng",
+              "login": "Daniel-647",
+              "name": "Daniel-647"
+            }
+          ],
+          "committedDate": "2026-10-20T05:20:14Z",
+          "messageBody": "",
+          "messageHeadline": "ci: add gated release workflow",
+          "oid": "ed5e43d761b449a10c7ce30911f99b8194fad465"
+        }
+      ],
+      "createdAt": "2026-10-20T05:20:19Z",
+      "mergeCommit": {
+        "oid": "f394c6b09e233af442c675eaa95f6702bb78e433"
+      },
+      "mergedAt": "2026-10-20T05:29:14Z",
+      "number": 4,
+      "reviews": [
+        {
+          "id": "PRR_kwDOVQQD388AAAABTKiPoQ",
+          "author": {
+            "login": "QuQ-art"
+          },
+          "authorAssociation": "COLLABORATOR",
+          "body": "",
+          "submittedAt": "2026-10-20T05:26:05Z",
+          "includesCreatedEdit": false,
+          "reactionGroups": [],
+          "state": "APPROVED",
+          "commit": {
+            "oid": "ed5e43d761b449a10c7ce30911f99b8194fad465"
+          }
+        }
+      ],
+      "url": "https://github.com/Daniel-647/ops-lab1-7/pull/4"
+    },
+    {
+      "commits": [
+        {
+          "authoredDate": "2026-10-20T13:29:00Z",
+          "authors": [
+            {
+              "email": "wenz_x@sjtu.edu.cn",
+              "id": "U_kgDOD8VRYQ",
+              "login": "wenzhu4203",
+              "name": "Wenzhu"
+            }
+          ],
+          "committedDate": "2026-10-20T13:29:00Z",
+          "messageBody": "",
+          "messageHeadline": "docs: add running version query instructions",
+          "oid": "e12b18602ff07a8ea9de4f6be5bbcf538c3ceddd"
+        }
+      ],
+      "createdAt": "2026-10-20T13:37:46Z",
+      "mergeCommit": {
+        "oid": "63f498dfa4ee4f844ba648d176078fd52d8083c7"
+      },
+      "mergedAt": "2026-10-20T13:47:03Z",
+      "number": 5,
+      "reviews": [
+        {
+          "id": "PRR_kwDOVQQD388AAAABTPHb1A",
+          "author": {
+            "login": "Daniel-647"
+          },
+          "authorAssociation": "OWNER",
+          "body": "",
+          "submittedAt": "2026-10-20T13:43:15Z",
+          "includesCreatedEdit": false,
+          "reactionGroups": [],
+          "state": "APPROVED",
+          "commit": {
+            "oid": "e12b18602ff07a8ea9de4f6be5bbcf538c3ceddd"
+          }
+        }
+      ],
+      "url": "https://github.com/Daniel-647/ops-lab1-7/pull/5"
+    }
+  ],
+  "runs": [
+    {
+      "conclusion": "success",
+      "created_at": "2026-10-20T01:01:47Z",
+      "event": "push",
+      "head_sha": "8a7ecb744b441462437e3c02e63a09803bf04eb1",
+      "html_url": "https://github.com/Daniel-647/ops-lab1-7/actions/runs/39351112987",
+      "id": 39351112987,
+      "run_attempt": 1,
+      "run_number": 1,
+      "run_started_at": "2026-10-20T01:01:47Z",
+      "updated_at": "2026-10-20T01:02:33Z"
+    },
+    {
+      "conclusion": "failure",
+      "created_at": "2026-10-20T02:36:02Z",
+      "event": "pull_request",
+      "head_sha": "0415f3e239151b553ddd2cf5c911c6213d82cf9a",
+      "html_url": "https://github.com/Daniel-647/ops-lab1-7/actions/runs/39359794537",
+      "id": 39359794537,
+      "run_attempt": 1,
+      "run_number": 4,
+      "run_started_at": "2026-10-20T02:36:02Z",
+      "updated_at": "2026-10-20T02:36:16Z"
+    },
+    {
+      "conclusion": "success",
+      "created_at": "2026-10-20T02:59:15Z",
+      "event": "pull_request",
+      "head_sha": "cd0f73673752585c27cab631d88ce8762a0c7f4d",
+      "html_url": "https://github.com/Daniel-647/ops-lab1-7/actions/runs/39361867498",
+      "id": 39361867498,
+      "run_attempt": 1,
+      "run_number": 5,
+      "run_started_at": "2026-10-20T02:59:15Z",
+      "updated_at": "2026-10-20T02:59:33Z"
+    },
+    {
+      "conclusion": "success",
+      "created_at": "2026-10-20T03:03:43Z",
+      "event": "push",
+      "head_sha": "392507cab237a19aa6f829ac918a59aaaf2ff3e0",
+      "html_url": "https://github.com/Daniel-647/ops-lab1-7/actions/runs/39362282086",
+      "id": 39362282086,
+      "run_attempt": 1,
+      "run_number": 6,
+      "run_started_at": "2026-10-20T03:03:43Z",
+      "updated_at": "2026-10-20T03:03:59Z"
+    },
+    {
+      "conclusion": "success",
+      "created_at": "2026-10-20T03:09:21Z",
+      "event": "pull_request",
+      "head_sha": "592373f01abd35ff07bc80884e9e0239c0c3acf7",
+      "html_url": "https://github.com/Daniel-647/ops-lab1-7/actions/runs/39362790734",
+      "id": 39362790734,
+      "run_attempt": 1,
+      "run_number": 7,
+      "run_started_at": "2026-10-20T03:09:21Z",
+      "updated_at": "2026-10-20T03:09:34Z"
+    },
+    {
+      "conclusion": "failure",
+      "created_at": "2026-10-20T03:11:26Z",
+      "event": "pull_request",
+      "head_sha": "3e3250c0769c3a587a20abcd6e8c4e9f87878c8b",
+      "html_url": "https://github.com/Daniel-647/ops-lab1-7/actions/runs/39362976846",
+      "id": 39362976846,
+      "run_attempt": 1,
+      "run_number": 8,
+      "run_started_at": "2026-10-20T03:11:26Z",
+      "updated_at": "2026-10-20T03:11:37Z"
+    },
+    {
+      "conclusion": "success",
+      "created_at": "2026-10-20T03:12:39Z",
+      "event": "pull_request",
+      "head_sha": "422dfa06fa3e5a67a6991a43a2dd4fb0edc0b3bd",
+      "html_url": "https://github.com/Daniel-647/ops-lab1-7/actions/runs/39363082268",
+      "id": 39363082268,
+      "run_attempt": 1,
+      "run_number": 9,
+      "run_started_at": "2026-10-20T03:12:39Z",
+      "updated_at": "2026-10-20T03:12:55Z"
+    },
+    {
+      "conclusion": "success",
+      "created_at": "2026-10-20T03:43:12Z",
+      "event": "pull_request",
+      "head_sha": "422dfa06fa3e5a67a6991a43a2dd4fb0edc0b3bd",
+      "html_url": "https://github.com/Daniel-647/ops-lab1-7/actions/runs/39365760963",
+      "id": 39365760963,
+      "run_attempt": 1,
+      "run_number": 11,
+      "run_started_at": "2026-10-20T03:43:12Z",
+      "updated_at": "2026-10-20T03:43:35Z"
+    },
+    {
+      "conclusion": "success",
+      "created_at": "2026-10-20T03:54:19Z",
+      "event": "push",
+      "head_sha": "3d94e8aa5601d5af5f3b68b2719b0263aab43408",
+      "html_url": "https://github.com/Daniel-647/ops-lab1-7/actions/runs/39366725871",
+      "id": 39366725871,
+      "run_attempt": 1,
+      "run_number": 12,
+      "run_started_at": "2026-10-20T03:54:19Z",
+      "updated_at": "2026-10-20T03:54:38Z"
+    },
+    {
+      "conclusion": "success",
+      "created_at": "2026-10-20T05:20:22Z",
+      "event": "pull_request",
+      "head_sha": "ed5e43d761b449a10c7ce30911f99b8194fad465",
+      "html_url": "https://github.com/Daniel-647/ops-lab1-7/actions/runs/39374359390",
+      "id": 39374359390,
+      "run_attempt": 1,
+      "run_number": 13,
+      "run_started_at": "2026-10-20T05:20:22Z",
+      "updated_at": "2026-10-20T05:20:39Z"
+    },
+    {
+      "conclusion": "success",
+      "created_at": "2026-10-20T05:29:16Z",
+      "event": "push",
+      "head_sha": "f394c6b09e233af442c675eaa95f6702bb78e433",
+      "html_url": "https://github.com/Daniel-647/ops-lab1-7/actions/runs/39375149163",
+      "id": 39375149163,
+      "run_attempt": 1,
+      "run_number": 14,
+      "run_started_at": "2026-10-20T05:29:16Z",
+      "updated_at": "2026-10-20T05:29:35Z"
+    },
+    {
+      "conclusion": "success",
+      "created_at": "2026-10-20T13:47:06Z",
+      "event": "push",
+      "head_sha": "63f498dfa4ee4f844ba648d176078fd52d8083c7",
+      "html_url": "https://github.com/Daniel-647/ops-lab1-7/actions/runs/39433405883",
+      "id": 39433405883,
+      "run_attempt": 1,
+      "run_number": 16,
+      "run_started_at": "2026-10-20T13:47:06Z",
+      "updated_at": "2026-10-20T13:47:28Z"
+    }
+  ],
+  "jobs": [
+    {
+      "jobs": [
+        {
+          "completed_at": "2026-10-20T01:02:32Z",
+          "conclusion": "success",
+          "name": "ci",
+          "started_at": "2026-10-20T01:01:50Z"
+        }
+      ],
+      "run_id": 39351112987
+    },
+    {
+      "jobs": [
+        {
+          "completed_at": "2026-10-20T02:36:16Z",
+          "conclusion": "failure",
+          "name": "ci",
+          "started_at": "2026-10-20T02:36:04Z"
+        }
+      ],
+      "run_id": 39359794537
+    },
+    {
+      "jobs": [
+        {
+          "completed_at": "2026-10-20T02:59:32Z",
+          "conclusion": "success",
+          "name": "ci",
+          "started_at": "2026-10-20T02:59:17Z"
+        }
+      ],
+      "run_id": 39361867498
+    },
+    {
+      "jobs": [
+        {
+          "completed_at": "2026-10-20T03:03:59Z",
+          "conclusion": "success",
+          "name": "ci",
+          "started_at": "2026-10-20T03:03:45Z"
+        }
+      ],
+      "run_id": 39362282086
+    },
+    {
+      "jobs": [
+        {
+          "completed_at": "2026-10-20T03:09:33Z",
+          "conclusion": "success",
+          "name": "ci",
+          "started_at": "2026-10-20T03:09:23Z"
+        }
+      ],
+      "run_id": 39362790734
+    },
+    {
+      "jobs": [
+        {
+          "completed_at": "2026-10-20T03:11:37Z",
+          "conclusion": "failure",
+          "name": "ci",
+          "started_at": "2026-10-20T03:11:28Z"
+        }
+      ],
+      "run_id": 39362976846
+    },
+    {
+      "jobs": [
+        {
+          "completed_at": "2026-10-20T03:12:54Z",
+          "conclusion": "success",
+          "name": "ci",
+          "started_at": "2026-10-20T03:12:41Z"
+        }
+      ],
+      "run_id": 39363082268
+    },
+    {
+      "jobs": [
+        {
+          "completed_at": "2026-10-20T03:43:34Z",
+          "conclusion": "success",
+          "name": "ci",
+          "started_at": "2026-10-20T03:43:15Z"
+        }
+      ],
+      "run_id": 39365760963
+    },
+    {
+      "jobs": [
+        {
+          "completed_at": "2026-10-20T03:54:38Z",
+          "conclusion": "success",
+          "name": "ci",
+          "started_at": "2026-10-20T03:54:21Z"
+        }
+      ],
+      "run_id": 39366725871
+    },
+    {
+      "jobs": [
+        {
+          "completed_at": "2026-10-20T05:20:38Z",
+          "conclusion": "success",
+          "name": "ci",
+          "started_at": "2026-10-20T05:20:24Z"
+        }
+      ],
+      "run_id": 39374359390
+    },
+    {
+      "jobs": [
+        {
+          "completed_at": "2026-10-20T05:29:35Z",
+          "conclusion": "success",
+          "name": "ci",
+          "started_at": "2026-10-20T05:29:19Z"
+        }
+      ],
+      "run_id": 39375149163
+    },
+    {
+      "jobs": [
+        {
+          "completed_at": "2026-10-20T13:47:28Z",
+          "conclusion": "success",
+          "name": "ci",
+          "started_at": "2026-10-20T13:47:09Z"
+        }
+      ],
+      "run_id": 39433405883
+    }
+  ],
+  "releases": [
+    {
+      "assets": [
+        {
+          "digest": "sha256:1bc77fb3b9095cb85d2ac5489a87c88b02953e241add2cb6318ff1032d10b827",
+          "name": "enroll-conflict_1.0.1_linux_amd64.tar.gz"
+        },
+        {
+          "digest": "sha256:7828404cbd07d70e966621c2169cb30f4790c6ceefe1623064a9b0369dcd1982",
+          "name": "enroll-conflict_1.0.1_linux_amd64.tar.gz.sha256"
+        }
+      ],
+      "html_url": "https://github.com/Daniel-647/ops-lab1-7/releases/tag/v1.0.1",
+      "published_at": "2026-10-20T13:50:45Z",
+      "tag_name": "v1.0.1"
+    },
+    {
+      "assets": [
+        {
+          "digest": "sha256:40b6bbb4dc1b4875b84c7dfd3d2cec88fee137d4f64ac1999eb224bceb4048af",
+          "name": "enroll-conflict_1.0.0_linux_amd64.tar.gz"
+        },
+        {
+          "digest": "sha256:8c756792d1fcbf3013e66c25556f7d6ec4a91e5d1cb0f264158a6a885329611e",
+          "name": "enroll-conflict_1.0.0_linux_amd64.tar.gz.sha256"
+        }
+      ],
+      "html_url": "https://github.com/Daniel-647/ops-lab1-7/releases/tag/v1.0.0",
+      "published_at": "2026-10-20T05:31:42Z",
+      "tag_name": "v1.0.0"
+    }
+  ],
+  "table": [
+    {
+      "pr": 2,
+      "first_authored": "2026-10-20 10:31:32",
+      "first_committed": "2026-10-20 10:31:32",
+      "merged": "2026-10-20 11:03:41",
+      "release": "v1.0.0",
+      "published": "2026-10-20 13:31:42",
+      "duration": "3小时0分10秒",
+      "seconds": 10810
+    },
+    {
+      "pr": 3,
+      "first_authored": "2026-10-20 10:16:42",
+      "first_committed": "2026-10-20 11:08:18",
+      "merged": "2026-10-20 11:54:16",
+      "release": "v1.0.0",
+      "published": "2026-10-20 13:31:42",
+      "duration": "3小时15分0秒",
+      "seconds": 11700
+    },
+    {
+      "pr": 4,
+      "first_authored": "2026-10-20 13:20:14",
+      "first_committed": "2026-10-20 13:20:14",
+      "merged": "2026-10-20 13:29:14",
+      "release": "v1.0.0",
+      "published": "2026-10-20 13:31:42",
+      "duration": "0小时11分28秒",
+      "seconds": 688
+    },
+    {
+      "pr": 5,
+      "first_authored": "2026-10-20 21:29:00",
+      "first_committed": "2026-10-20 21:29:00",
+      "merged": "2026-10-20 21:47:03",
+      "release": "v1.0.1",
+      "published": "2026-10-20 21:50:45",
+      "duration": "0小时21分45秒",
+      "seconds": 1305
+    }
+  ],
+  "timings": [
+    {
+      "run": 1,
+      "id": 39351112987,
+      "event": "push",
+      "result": "success",
+      "start": "2026-10-20 09:01:50",
+      "end": "2026-10-20 09:02:32",
+      "seconds": 42,
+      "queue_seconds": 3
+    },
+    {
+      "run": 4,
+      "id": 39359794537,
+      "event": "pull_request",
+      "result": "failure",
+      "start": "2026-10-20 10:36:04",
+      "end": "2026-10-20 10:36:16",
+      "seconds": 12,
+      "queue_seconds": 2
+    },
+    {
+      "run": 5,
+      "id": 39361867498,
+      "event": "pull_request",
+      "result": "success",
+      "start": "2026-10-20 10:59:17",
+      "end": "2026-10-20 10:59:32",
+      "seconds": 15,
+      "queue_seconds": 2
+    },
+    {
+      "run": 6,
+      "id": 39362282086,
+      "event": "push",
+      "result": "success",
+      "start": "2026-10-20 11:03:45",
+      "end": "2026-10-20 11:03:59",
+      "seconds": 14,
+      "queue_seconds": 2
+    },
+    {
+      "run": 7,
+      "id": 39362790734,
+      "event": "pull_request",
+      "result": "success",
+      "start": "2026-10-20 11:09:23",
+      "end": "2026-10-20 11:09:33",
+      "seconds": 10,
+      "queue_seconds": 2
+    },
+    {
+      "run": 8,
+      "id": 39362976846,
+      "event": "pull_request",
+      "result": "failure",
+      "start": "2026-10-20 11:11:28",
+      "end": "2026-10-20 11:11:37",
+      "seconds": 9,
+      "queue_seconds": 2
+    },
+    {
+      "run": 9,
+      "id": 39363082268,
+      "event": "pull_request",
+      "result": "success",
+      "start": "2026-10-20 11:12:41",
+      "end": "2026-10-20 11:12:54",
+      "seconds": 13,
+      "queue_seconds": 2
+    },
+    {
+      "run": 11,
+      "id": 39365760963,
+      "event": "pull_request",
+      "result": "success",
+      "start": "2026-10-20 11:43:15",
+      "end": "2026-10-20 11:43:34",
+      "seconds": 19,
+      "queue_seconds": 3
+    },
+    {
+      "run": 12,
+      "id": 39366725871,
+      "event": "push",
+      "result": "success",
+      "start": "2026-10-20 11:54:21",
+      "end": "2026-10-20 11:54:38",
+      "seconds": 17,
+      "queue_seconds": 2
+    },
+    {
+      "run": 13,
+      "id": 39374359390,
+      "event": "pull_request",
+      "result": "success",
+      "start": "2026-10-20 13:20:24",
+      "end": "2026-10-20 13:20:38",
+      "seconds": 14,
+      "queue_seconds": 2
+    },
+    {
+      "run": 14,
+      "id": 39375149163,
+      "event": "push",
+      "result": "success",
+      "start": "2026-10-20 13:29:19",
+      "end": "2026-10-20 13:29:35",
+      "seconds": 16,
+      "queue_seconds": 3
+    },
+    {
+      "run": 16,
+      "id": 39433405883,
+      "event": "push",
+      "result": "success",
+      "start": "2026-10-20 21:47:09",
+      "end": "2026-10-20 21:47:28",
+      "seconds": 19,
+      "queue_seconds": 3
+    }
+  ],
+  "pushEvents": [
+    {
+      "created_at": "2026-10-20T05:29:15Z",
+      "payload": {
+        "before": "3d94e8aa5601d5af5f3b68b2719b0263aab43408",
+        "head": "f394c6b09e233af442c675eaa95f6702bb78e433",
+        "push_id": 47092393582,
+        "ref": "refs/heads/main",
+        "repository_id": 1426326495
+      }
+    },
+    {
+      "created_at": "2026-10-20T03:43:09Z",
+      "payload": {
+        "before": "a05705064e0f17dd421211cd00ba6b959d55776a",
+        "head": "422dfa06fa3e5a67a6991a43a2dd4fb0edc0b3bd",
+        "push_id": 47085353661,
+        "ref": "refs/heads/test/single-period-gate",
+        "repository_id": 1426326495
+      }
+    },
+    {
+      "created_at": "2026-10-20T03:11:23Z",
+      "payload": {
+        "before": "592373f01abd35ff07bc80884e9e0239c0c3acf7",
+        "head": "3e3250c0769c3a587a20abcd6e8c4e9f87878c8b",
+        "push_id": 47083235711,
+        "ref": "refs/heads/test/single-period-gate",
+        "repository_id": 1426326495
+      }
+    },
+    {
+      "created_at": "2026-10-20T01:01:43Z",
+      "payload": {
+        "before": "05543f84b5a4dcfc3c97a6fe95c8f51fa5868f8d",
+        "head": "8a7ecb744b441462437e3c02e63a09803bf04eb1",
+        "push_id": 47074402636,
+        "ref": "refs/heads/main",
+        "repository_id": 1426326495
+      }
+    },
+    {
+      "created_at": "2026-10-20T13:47:05Z",
+      "payload": {
+        "before": "f394c6b09e233af442c675eaa95f6702bb78e433",
+        "head": "63f498dfa4ee4f844ba648d176078fd52d8083c7",
+        "push_id": 47136959746,
+        "ref": "refs/heads/main",
+        "repository_id": 1426326495
+      }
+    },
+    {
+      "created_at": "2026-10-20T03:15:56Z",
+      "payload": {
+        "before": "422dfa06fa3e5a67a6991a43a2dd4fb0edc0b3bd",
+        "head": "a05705064e0f17dd421211cd00ba6b959d55776a",
+        "push_id": 47083539516,
+        "ref": "refs/heads/test/single-period-gate",
+        "repository_id": 1426326495
+      }
+    },
+    {
+      "created_at": "2026-10-20T03:03:42Z",
+      "payload": {
+        "before": "77e3b81b88898c086151a15e49d634ec8271c61d",
+        "head": "392507cab237a19aa6f829ac918a59aaaf2ff3e0",
+        "push_id": 47082709168,
+        "ref": "refs/heads/main",
+        "repository_id": 1426326495
+      }
+    },
+    {
+      "created_at": "2026-10-20T02:59:10Z",
+      "payload": {
+        "before": "0415f3e239151b553ddd2cf5c911c6213d82cf9a",
+        "head": "cd0f73673752585c27cab631d88ce8762a0c7f4d",
+        "push_id": 47082368430,
+        "ref": "refs/heads/feat/gate-round1-QuQ",
+        "repository_id": 1426326495
+      }
+    }
+  ]
+}
