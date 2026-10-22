@@ -89,3 +89,66 @@ jobs:
             --verify-tag \
             --title "$TAG" \
             --notes "Source commit: $COMMIT"
+
+  image:
+    needs: release
+    runs-on: ubuntu-24.04
+
+    permissions:
+      contents: read
+      packages: write
+
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      TAG: ${{ github.ref_name }}
+      COMMIT: ${{ github.sha }}
+      ACTOR: ${{ github.actor }}
+
+    steps:
+      - name: Checkout Dockerfile
+        uses: actions/checkout@v7
+
+      - name: Download and verify release artifact
+        run: |
+          set -euo pipefail
+          VERSION="${TAG#v}"
+          ARCHIVE="enroll-conflict_${VERSION}_linux_amd64.tar.gz"
+
+          mkdir -p dist/image
+          gh release download "$TAG" \
+            --repo "$GH_REPO" \
+            --pattern "$ARCHIVE" \
+            --pattern "$ARCHIVE.sha256" \
+            --dir dist/image
+
+          (
+            cd dist/image
+            sha256sum -c "$ARCHIVE.sha256"
+          )
+
+          tar -xzf "dist/image/$ARCHIVE" -C dist/image
+
+      - name: Build and push container image
+        run: |
+          set -euo pipefail
+          VERSION="${TAG#v}"
+          IMAGE="ghcr.io/${GH_REPO,,}"
+
+          printf '%s' "$GH_TOKEN" |
+            docker login ghcr.io \
+              --username "$ACTOR" \
+              --password-stdin
+
+          docker build \
+            --platform linux/amd64 \
+            --file Dockerfile \
+            --build-arg VERSION="$VERSION" \
+            --build-arg COMMIT="$COMMIT" \
+            --build-arg SOURCE="https://github.com/$GH_REPO" \
+            --tag "$IMAGE:$TAG" \
+            "dist/image/enroll-conflict_${VERSION}_linux_amd64"
+
+          printf 'Image tag: %s\n' "$IMAGE:$TAG"
+          docker push "$IMAGE:$TAG"
+
